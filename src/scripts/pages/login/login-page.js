@@ -47,7 +47,7 @@ export default class LoginPage {
     const password = document.querySelector("#password").value;
 
     this.toggleLoginButton(true);
-    this.presenter.login({ email, password }); // ⬅️ gunakan presenter
+    this.presenter.login({ email, password }); 
   }
 
   onLoginSuccess() {

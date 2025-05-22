@@ -17,7 +17,6 @@ const MapUtils = {
 
     const map = L.map(container).setView([lat, lng], zoom);
 
-    // Tambahkan beberapa tile layer
     const openStreet = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
     });

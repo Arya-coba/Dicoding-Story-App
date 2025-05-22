@@ -1,7 +1,7 @@
 import "../styles/styles.css";
 import "leaflet/dist/leaflet.css";
-
 import App from "./pages/app";
+
 
 async function initializeApp() {
   const app = new App({

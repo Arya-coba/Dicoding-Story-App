@@ -36,7 +36,7 @@ export default class RegisterPage {
 
   async afterRender() {
     const form = document.getElementById("register-form");
-    this.presenter = new RegisterPresenter(this); // ⬅️ Hubungkan view ke presenter
+    this.presenter = new RegisterPresenter(this); 
     form.addEventListener("submit", this.handleSubmit.bind(this));
   }
 
@@ -48,7 +48,7 @@ export default class RegisterPage {
     const password = document.getElementById("password").value;
 
     this.toggleRegisterButtonState(true);
-    this.presenter.register({ name, email, password }); // ⬅️ Kirim ke presenter
+    this.presenter.register({ name, email, password }); 
   }
 
   onSuccessRegister(message) {

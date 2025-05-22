@@ -7,7 +7,6 @@ class RegisterPresenter {
 
   async register({ name, email, password }) {
     try {
-      // Validasi dasar (opsional tapi berguna)
       if (!name || !email || !password) {
         this.view.onFailedRegister("Name, email, and password are required.");
         return;
@@ -19,7 +18,6 @@ class RegisterPresenter {
         this.view.onFailedRegister(response.message || "Registration failed.");
       } else {
         this.view.onSuccessRegister("Registration successful! Please login with your new account.");
-        // Redirect ke halaman login (opsional, atau bisa di-handle di view)
         window.location.hash = "#/login";
       }
     } catch (error) {

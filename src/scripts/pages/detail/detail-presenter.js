@@ -15,8 +15,8 @@ class DetailPresenter {
 
       const response = await StoriesAPI.getStoryDetail(storyId);
 
-      console.log("API Response:", response); // Debugging
-
+      console.log("API Response:", response); 
+      
       if (response.error || !response.story) {
         this.view.onStoryDetailError(response.message || "Failed to load story details.");
         return;

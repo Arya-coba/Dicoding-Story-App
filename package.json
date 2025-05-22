@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "generate-sw": "workbox generateSW workbox-config.js",
+    "build:pwa": "npm run build && npm run generate-sw"
   },
   "devDependencies": {
     "vite": "^6.2.0"

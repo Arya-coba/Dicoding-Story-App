@@ -11,7 +11,7 @@ const Auth = {
   },
 
   _checkLoginStatus() {
-    const isLoggedIn = StoriesAPI.checkAuth(); // ini tidak async, cukup boolean
+    const isLoggedIn = StoriesAPI.checkAuth(); 
 
     if (isLoggedIn) {
       this._showLoggedInState();
@@ -41,7 +41,7 @@ const Auth = {
     if (this._registerButton) this._registerButton.style.display = "block";
     if (this._logoutButton) {
       this._logoutButton.style.display = "none";
-      this._logoutButton.textContent = "Logout"; // reset teks jika diperlukan
+      this._logoutButton.textContent = "Logout"; 
     }
   },
 

@@ -432,3 +432,17 @@ grid-template-columns: repeat(4, 1fr);
     opacity: 1;
   }
 }
+
+.auth-button {
+  padding: 0.5rem 1rem;
+  margin: 0 0.5rem;
+  background-color: #6200ee;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.auth-button.danger {
+  background-color: #e53935;
+}

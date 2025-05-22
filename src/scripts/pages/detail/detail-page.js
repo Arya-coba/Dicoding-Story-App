@@ -1,7 +1,6 @@
 import { showFormattedDate } from "../../utils/index";
 import { parseActivePathname } from "../../routes/url-parser";
 import MapUtils from "../../utils/map";
-import DetailPresenter from "./detail-presenter";
 
 export default class DetailPage {
   async render() {
@@ -22,7 +21,7 @@ export default class DetailPage {
 
   async afterRender() {
   const { id: storyId } = parseActivePathname();
-  console.log("Parsed storyId:", storyId); // ✅ Debug
+  console.log("Parsed storyId:", storyId); 
 
   if (!storyId) {
     this.onStoryDetailError("No story ID provided.");
@@ -75,7 +74,7 @@ if (story?.lat != null && story?.lon != null) {
   }
 
  _createMapContainer({ lat, lon, name }) {
-  if (!lat || !lon) return ""; // ✅ Hindari error null
+  if (!lat || !lon) return ""; 
 
   return `<div id="detail-map" class="story-map detail-map" aria-label="Location map for ${name}'s story"></div>`;
 }

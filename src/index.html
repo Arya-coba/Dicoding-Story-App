@@ -17,6 +17,8 @@
 
     <link rel="stylesheet" href="/styles/styles.css" />
 
+    <link rel="manifest" href="/manifest.webmanifest" />
+
     <script type="module" src="/scripts/index.js"></script>
   </head>
   <body>
@@ -36,9 +38,6 @@
           </ul>
         </nav>
 
-        <button id="subscribe-notif">Aktifkan Notifikasi</button>
-        <button id="unsubscribe-notif">Nonaktifkan Notifikasi</button>
-
         <button
           id="drawer-button"
           class="drawer-button"
@@ -46,6 +45,10 @@
         >
           Menu
         </button>
+
+        <button id="subscribe-notification" class="auth-button">Aktifkan Notifikasi</button>
+        <button id="unsubscribe-notification" class="auth-button danger">Nonaktifkan Notifikasi</button>
+        
       </div>
     </header>
 

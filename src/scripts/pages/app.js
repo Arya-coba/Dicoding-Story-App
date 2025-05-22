@@ -1,7 +1,8 @@
-import routes from "../routes/routes";
-import { getActiveRoute } from "../routes/url-parser";
-import Auth from "../utils/auth";
-import CameraUtils from "../utils/camera";
+import routes from "../routes/routes.js";
+import { getActiveRoute } from "../routes/url-parser.js";
+import Auth from "../utils/auth.js";
+import CameraUtils from "../utils/camera.js";
+import { subscribeUser, unsubscribeUser } from "../utils/push-notification.js";
 
 class App {
   #content;
@@ -18,6 +19,45 @@ class App {
 
     this.#initializeDrawer();
     this.#initializeAuth();
+    this.#setupNotificationButtons(); 
+    this.#registerServiceWorker(); 
+  }
+
+  #registerServiceWorker() { 
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js')
+        .then(() => console.log('Service Worker registered'))
+        .catch(err => console.error('SW failed:', err));
+    }
+  }
+
+  #setupNotificationButtons() {
+    const subscribeButton = document.getElementById('subscribe-notification');
+    const unsubscribeButton = document.getElementById('unsubscribe-notification');
+
+    if (subscribeButton) {
+      subscribeButton.addEventListener('click', async () => {
+        try {
+          await subscribeUser();
+          alert("Berhasil berlangganan notifikasi!");
+        } catch (e) {
+          alert("Gagal mengaktifkan notifikasi. Silakan coba lagi atau cek konsol.");
+          console.error("Error subscribing:", e);
+        }
+      });
+    }
+
+    if (unsubscribeButton) {
+      unsubscribeButton.addEventListener('click', async () => {
+        try {
+          await unsubscribeUser();
+          alert("Berhasil berhenti berlangganan notifikasi.");
+        } catch (e) {
+          alert("Gagal berhenti langganan. Silakan coba lagi atau cek konsol.");
+          console.error("Error unsubscribing:", e);
+        }
+      });
+    }
   }
 
   #initializeDrawer() {
@@ -62,27 +102,6 @@ class App {
       registerButton: authNav.querySelector("#register-button"),
     });
 
-const skipLink = document.querySelector(".skip-to-content");
-const mainContent = document.querySelector("#main-content");
-
-if (skipLink && mainContent) {
-  skipLink.addEventListener("click", function (event) {
-    event.preventDefault();
-    skipLink.blur();
-    mainContent.setAttribute("tabindex", "-1");
-    mainContent.focus();
-    mainContent.scrollIntoView();
-  });
-}
-
-skipLink.addEventListener("click", function (event) {
-  event.preventDefault();               
-  skipLink.blur();                      
-  mainContent.setAttribute("tabindex", "-1"); 
-  mainContent.focus();                  
-  mainContent.scrollIntoView();        
-});
-    
   }
 
   #createAuthNav() {

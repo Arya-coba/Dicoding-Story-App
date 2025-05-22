@@ -1,4 +1,5 @@
 import StoriesAPI from "../../data/api";
+import { subscribeUser } from '../../utils/push-notification'; 
 
 class LoginPresenter {
   #view;
@@ -11,7 +12,6 @@ class LoginPresenter {
 
   async login({ email, password }) {
     try {
-      // Validasi sederhana (opsional)
       if (!email || !password) {
         this.#view.onLoginError("Email dan password harus diisi.");
         return;
@@ -25,8 +25,11 @@ class LoginPresenter {
       }
 
       this.#view.onLoginSuccess();
-      // Redirect ke halaman home atau halaman sebelumnya (opsional)
+
+      await subscribeUser();
+
       window.location.hash = "#/";
+
     } catch (error) {
       this.#view.onLoginError(error.message || "Terjadi kesalahan. Silakan coba lagi.");
     }
