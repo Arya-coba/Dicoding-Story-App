@@ -17,17 +17,21 @@
       "type": "image/png"
     }
   ],
-
   "shortcuts": [
     {
       "name": "Offline Stories",
       "short_name": "Offline",
       "description": "Buka halaman story offline",
       "url": "/#/offline",
-      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+      "icons": [
+        {
+          "src": "/icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
     }
   ],
-  
   "screenshots": [
     {
       "src": "/screenshots/desktop.png",
@@ -41,5 +45,3 @@
     }
   ]
 }
-
-

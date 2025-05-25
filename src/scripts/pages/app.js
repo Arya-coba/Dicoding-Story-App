@@ -19,7 +19,6 @@ class App {
 
     this.#initializeDrawer();
     this.#initializeAuth();
-    this.#setupNotificationButtons(); 
     this.#registerServiceWorker(); 
   }
 
@@ -136,32 +135,38 @@ class App {
   }
 
   async renderPage() {
-    const url = getActiveRoute();
-    const page = routes[url];
+  const url = getActiveRoute();
+  const page = routes[url];
 
-    if (!page) {
-      this.#content.innerHTML = `
-        <div class="container">
-          <h1>Page Not Found</h1>
-          <p>The page you are looking for does not exist.</p>
-        </div>
-      `;
-      return;
-    }
+  if (!page) {
+    this.#content.innerHTML = `
+      <div class="container">
+        <h1>Page Not Found</h1>
+        <p>The page you are looking for does not exist.</p>
+      </div>
+    `;
+    return;
+  }
 
-    if (document.startViewTransition) {
-      const transition = document.startViewTransition(async () => {
-        CameraUtils.clean?.();
-        this.#content.innerHTML = await page.render();
-        await page.afterRender();
-      });
-      await transition.finished;
-    } else {
+  if (document.startViewTransition) {
+    const transition = document.startViewTransition(async () => {
       CameraUtils.clean?.();
       this.#content.innerHTML = await page.render();
       await page.afterRender();
-    }
+
+      // ✅ Pasang event tombol setelah konten dimuat
+      this.#setupNotificationButtons();
+    });
+    await transition.finished;
+  } else {
+    CameraUtils.clean?.();
+    this.#content.innerHTML = await page.render();
+    await page.afterRender();
+
+    // ✅ Pasang event tombol setelah konten dimuat
+    this.#setupNotificationButtons();
   }
+}
 }
 
 export default App;
